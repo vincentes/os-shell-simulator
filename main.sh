@@ -28,6 +28,13 @@ function VerifyNonDictionary() {
 
 function RetrieveWords() {
     filename='diccionario.txt'
+    if [ $1 -eq 1 ]
+    then
+        dia=`date +"%d/%m/%Y"`
+        hora=`date +"%H:%M"`
+        mkdir -p "informes"
+        echo "$dia $hora" >> "informes/letras.txt"
+    fi    
     while read line; do
     if [[ $line == s* ]] || [[ $line = *a ]] ; then
         if [ $1 -eq 0 ]
@@ -36,7 +43,6 @@ function RetrieveWords() {
         fi
         if [ $1 -eq 1 ]
         then
-            mkdir -p "informes"
             echo "$line" >> "informes/letras.txt"
         fi
     fi
