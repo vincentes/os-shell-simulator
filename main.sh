@@ -30,10 +30,10 @@ function RetrieveWords() {
     filename='diccionario.txt'
     if [ $1 -eq 1 ]
     then
-        dia=`date +"%d/%m/%Y"`
-        hora=`date +"%H:%M"`
+        date=`date +"%d/%m/%Y"`
+        time=`date +"%H:%M"`
         mkdir -p "informes"
-        echo "$dia $hora" >> "informes/letras.txt"
+        echo "$date $time" >> "informes/letras.txt"
     fi    
     while read line; do
     if [[ $line == s* ]] || [[ $line = *a ]] ; then
