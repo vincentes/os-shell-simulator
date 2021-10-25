@@ -28,13 +28,6 @@ function VerifyNonDictionary() {
 
 function RetrieveWords() {
     filename='diccionario.txt'
-    if [ $1 -eq 1 ]
-    then
-        date=`date +"%d/%m/%Y"`
-        time=`date +"%H:%M"`
-        mkdir -p "informes"
-        echo "$date $time" >> "informes/letras.txt"
-    fi    
     while read line; do
     if [[ $line == s* ]] || [[ $line = *a ]] ; then
         if [ $1 -eq 0 ]
@@ -43,6 +36,7 @@ function RetrieveWords() {
         fi
         if [ $1 -eq 1 ]
         then
+            mkdir -p "informes"
             echo "$line" >> "informes/letras.txt"
         fi
     fi
@@ -63,14 +57,17 @@ function DisplayMenu() {
         VerifyLength $password
         VerifyNumeric $password
         VerifyNonDictionary $password
+        DisplayMenu
         ;;
         2)
         RetrieveWords 0
+        DisplayMenu
         ;;
         3)
         echo "Generando reporte."
         RetrieveWords 1
         echo "El reporte ha sido generado."
+        DisplayMenu
         ;;
         4)
         echo "Chau!"
